@@ -1,0 +1,44 @@
+﻿@using WebApplication1.Models
+@model List<Article>
+@{
+    Layout = null;
+}
+<!DOCTYPE>
+<html>
+<head>
+    <title>Результат поиска</title>
+    <style>
+        .format {
+            margin-top: 12px;
+        }
+        a {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        p {
+            margin: 2px;
+        }
+        .end{
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a href="~/Home">Написать пост</a><br /><a href="~/Show">Просмотреть посты</a><br />
+    @if (Model != null && Model.Count > 0)
+    {
+        @foreach (var article in Model)
+        {
+            <div class="format">
+                <p><b>Дата создания:</b> @article.Date</p>
+                <p><b>Тема:</b> @article.Theme</p>
+                <p><b>Текст:</b><br />@article.Text</p>
+            </div>
+        }
+    }
+    else
+    {
+        <p class="end">Пустой запрос или нет совпадений</p>
+    }
+</body>
+</html>

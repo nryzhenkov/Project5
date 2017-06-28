@@ -1,0 +1,30 @@
+﻿@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Write</title>
+        <style>
+            textarea{
+                width: 50%;
+                min-width: 200px;
+                height: 250px;
+                font-size: 18px;
+                resize: none;
+            }
+        </style>
+    </head>
+    <body>
+        <form method="post" action="~/Show/AddArticle">
+            <label>Тема:</label><br />
+            <input type="text" name="theme" autocomplete="off"/><br />
+            <label>Текст:</label><br />
+            <textarea name="text"></textarea><br />
+            <input type="submit" value="Отправить" />
+        </form>
+        <br />
+        <a href="/Show">Просмотреть посты</a>
+    </body>
+</html>

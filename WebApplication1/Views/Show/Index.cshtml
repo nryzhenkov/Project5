@@ -1,0 +1,73 @@
+﻿@using WebApplication1.Models
+@model IndexViewModel
+@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Show</title>
+    <style>
+        .format{
+            margin-bottom: 12px;
+        }
+        .form1 {
+            margin-top: 10px;
+        }
+        p{
+        margin:2px;
+        }
+        a{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        textarea {
+            width: 385px;
+            height: 55px;
+            resize: none;
+        }
+    </style>
+
+</head>
+<body> 
+    <h1>Список тем</h1>
+    <div>
+       @foreach (var article in Model.Articles)
+       {
+        <div class="format">
+            <p><b>Дата создания:</b> @article.Date</p>
+            <p><b>Тема:</b> @article.Theme</p>
+            <p><b>Текст:</b><br />@article.Text</p>
+        </div>  
+       }
+
+
+     </div>
+    @if (Model.PageViewModel.HasPreviousPage)
+    {
+        <a asp-action="Index"
+           asp-route-page="@(Model.PageViewModel.PageNumber - 1)">
+            Назад
+        </a>
+
+    }
+
+    @if (Model.PageViewModel.HasNextPage)
+    {
+        <a asp-action="Index"
+           asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+           >
+            Вперед
+        </a>
+
+    }
+    <div class="form1">
+        <form method="post" action="~/Show/Search">
+            <textarea name="text"></textarea><label><input type="checkbox" name="key" value="true" /> Поиск по теме</label><br />
+            <input type="submit" value="найти" />
+        </form>
+    </div>
+    <br /><a href="~/Home">Написать пост</a>
+</body>
+</html>
